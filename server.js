@@ -1,6 +1,7 @@
 // grab our dependencies
 const express = require('express'),
     expressLayouts = require('express-ejs-layouts'),
+    mongoose = require('mongoose'),
     app = express(),
     port = process.env.PORT || 8080
 
@@ -11,6 +12,8 @@ app.use(express.static(__dirname + '/public'))
 // set ejs as our templating engine
 app.set('view engine', 'ejs')
 app.use(expressLayouts)
+
+mongoose.connect('mongodb://localhost:27017/cs372-posts', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
 
 // set the routes
 app.use(require('./app/routes'))
