@@ -2,6 +2,7 @@
 const express = require('express'),
     expressLayouts = require('express-ejs-layouts'),
     mongoose = require('mongoose'),
+    bodyParser = require('body-parser'),
     app = express(),
     port = process.env.PORT || 8080
 require('dotenv').config()
@@ -14,7 +15,10 @@ app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'ejs')
 app.use(expressLayouts)
 
-mongoose.connect(process.env.DB_URI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+
+// use body parser to grab info from a form
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // set the routes
 app.use(require('./app/routes'))

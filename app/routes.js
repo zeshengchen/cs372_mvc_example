@@ -16,5 +16,8 @@ router.get('/', mainController.showHome)
 router.get('/posts/seed', postsController.seedPosts);
 // all posts
 router.get('/posts', postsController.showPosts)
+// create posts
+router.get('/posts/create', postsController.showCreate)
+router.post('/posts/create', postsController.processCreate)
 // single post 
 router.get('/posts/:slug', postsController.showSingle)
